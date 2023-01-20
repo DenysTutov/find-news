@@ -1,36 +1,71 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import styles from './ArticleItem.module.scss';
 
 export const ArticleItem = ({ article }) => {
   console.log(article.title.length);
   return (
-    <Box>
-      <img
-        src={article.imageUrl}
-        alt={article.title}
-        style={{ width: '100%', height: '217px', objectFit: 'cover' }}
-      />
-      <div>
-        <div>
-          <span>Date</span>
+    <div className={styles.wrapper}>
+      <img className={styles.img} src={article.imageUrl} alt={article.title} />
+      <div className={styles.content}>
+        <div className={styles.date}>
+          <svg
+            className={styles.date__icon}
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clipPath="url(#clip0_466_269)">
+              <path
+                d="M12 2.66675H3.99998C2.52722 2.66675 1.33331 3.86066 1.33331 5.33341V12.0001C1.33331 13.4728 2.52722 14.6667 3.99998 14.6667H12C13.4727 14.6667 14.6666 13.4728 14.6666 12.0001V5.33341C14.6666 3.86066 13.4727 2.66675 12 2.66675Z"
+                stroke="#363636"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5.33331 1.33337V4.00004"
+                stroke="#363636"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M10.6666 1.33337V4.00004"
+                stroke="#363636"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M1.33331 6.66675H14.6666"
+                stroke="#363636"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+          </svg>
+
+          <span className={styles.date__text}>Date</span>
         </div>
 
-        <h2>
+        <h2 className={styles.title}>
           {article.title.length > 45
             ? article.title.slice(0, 40) + '...'
             : article.title}
         </h2>
 
-        <p>
+        <p className={styles.summary}>
           {article.summary.length > 155
             ? article.summary.slice(0, 155) + '...'
             : article.summary}
         </p>
 
-        <div>
-          <a href="#">Read more</a>
+        <div className={styles.readMore}>
+          <a href="#" className={styles.readMore__link}>
+            Read more
+          </a>
 
           <svg
+            className={styles.readMore__icon}
             width="12"
             height="10"
             viewBox="0 0 12 10"
@@ -45,6 +80,6 @@ export const ArticleItem = ({ article }) => {
           </svg>
         </div>
       </div>
-    </Box>
+    </div>
   );
 };

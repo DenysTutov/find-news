@@ -1,0 +1,72 @@
+@import '../../scss/variables';
+@import '../../scss/mixins/fonts';
+
+.wrapper {
+  width: 400px;
+  height: 530px;
+
+  background: $container-color;
+  border: 1px solid $border-color;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+.img {
+  width: 400px;
+  height: 217px;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.content {
+  padding: 25px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  &__text {
+    padding-top: 3px;
+    @include main-font(14px, 21px, 400);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    opacity: 0.6;
+  }
+}
+
+.title {
+  height: 58px;
+  margin-bottom: 20px;
+  @include main-font(24px, 29px, 400);
+}
+
+.summary {
+  margin-bottom: 20px;
+  @include main-font(16px, 24px, 400);
+}
+
+.readMore {
+  display: flex;
+  align-items: center;
+
+  &__link {
+    @include main-font(16px, 24px, 700);
+  }
+  &__icon {
+    width: 12px;
+    height: 10px;
+    fill: $black;
+    margin-left: 6px;
+  }
+}
