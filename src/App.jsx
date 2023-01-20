@@ -1,5 +1,10 @@
-const App = () => {
-  return <div>Hello</div>;
-};
+import Home from './pages/Home';
+import './scss/app.scss';
 
-export default App;
+export const App = () => {
+  return (
+    <div>
+      <Home />
+    </div>
+  );
+};
