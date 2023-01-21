@@ -11,7 +11,7 @@ const root = document.getElementById('root');
 if (root) {
   ReactDOM.createRoot(root).render(
     <Provider store={store}>
-      <BrowserRouter basename="find-news">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
