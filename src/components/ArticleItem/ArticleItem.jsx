@@ -29,7 +29,7 @@ export const ArticleItem = ({ article }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', mb: '20px' }}>
           <CiCalendar sx={{ width: '16px', height: '16px' }} />
           <Typography component="span" sx={{ ml: '8px', fontSize: '14px' }}>
-            {article.publishedAt}
+            {article.publishedAt.split('T')[0]}
           </Typography>
         </Box>
 
