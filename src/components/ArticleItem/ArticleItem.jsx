@@ -4,7 +4,6 @@ import { theme } from '../../theme/myTheme';
 import { CiCalendar } from 'react-icons/ci';
 
 export const ArticleItem = ({ article }) => {
-  console.log(article.title.length);
   return (
     <Box
       sx={{
