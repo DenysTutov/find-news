@@ -4,6 +4,7 @@ import { theme } from '../../theme/myTheme';
 import { CiCalendar } from 'react-icons/ci';
 
 export const ArticleItem = ({ article }) => {
+  console.log(article);
   return (
     <Box
       sx={{
@@ -28,7 +29,7 @@ export const ArticleItem = ({ article }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', mb: '20px' }}>
           <CiCalendar sx={{ width: '16px', height: '16px' }} />
           <Typography component="span" sx={{ ml: '8px', fontSize: '14px' }}>
-            Date
+            {article.publishedAt}
           </Typography>
         </Box>
 
