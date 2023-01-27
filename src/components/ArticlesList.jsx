@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ArticleItem } from '../ArticleItem/ArticleItem';
+import { ArticleItem } from '../components/ArticleItem';
 import { Grid } from '@mui/material';
 
 export const ArticlesList = () => {

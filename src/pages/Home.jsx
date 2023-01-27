@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ArticlesList } from '../components/ArticlesList/ArticlesList';
-import { Search } from '../components/Search/Search';
-import { fetchArticles } from '../redux/slices/articleSlice';
+import { ArticlesList } from '../components/ArticlesList';
+import { Search } from '../components/Search';
+import {
+  getArticles,
+  getArticlesBySearch,
+} from '../redux/slices/articles/articlesOperations';
 import { selectorSearch } from '../redux/slices/filterSlice';
 
 //Material UI
@@ -15,14 +18,20 @@ const Home = () => {
   const { searchValue } = useSelector(selectorSearch);
 
   useEffect(() => {
-    const getArticles = () => {
-      const search = searchValue
-        ? `title_contains=${searchValue}&summary_contains=${searchValue}`
-        : '';
-      dispatch(fetchArticles({ search }));
+    if (!searchValue) {
+      dispatch(getArticles());
+    }
+  }, [dispatch, searchValue]);
+
+  useEffect(() => {
+    const fetchArticlesBySearch = () => {
+      const search = searchValue ? searchValue : '';
+      dispatch(getArticlesBySearch({ search }));
     };
 
-    getArticles();
+    if (searchValue) {
+      fetchArticlesBySearch();
+    }
   }, [dispatch, searchValue]);
 
   return (

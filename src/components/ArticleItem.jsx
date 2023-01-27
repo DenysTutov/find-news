@@ -1,10 +1,9 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { theme } from '../../theme/myTheme';
+import { theme } from '../theme/myTheme';
 import { CiCalendar } from 'react-icons/ci';
 
 export const ArticleItem = ({ article }) => {
-  console.log(article);
   return (
     <Box
       sx={{

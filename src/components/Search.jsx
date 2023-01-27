@@ -6,8 +6,8 @@ import { Box, InputBase, Paper, Typography } from '@mui/material';
 import { CiSearch } from 'react-icons/ci';
 import { VscClose } from 'react-icons/vsc';
 
-import { setSearchValue } from '../../redux/slices/filterSlice';
-import { theme } from '../../theme/myTheme';
+import { setSearchValue } from '../redux/slices/filterSlice';
+import { theme } from '../theme/myTheme';
 
 export const Search = () => {
   const dispatch = useDispatch();
