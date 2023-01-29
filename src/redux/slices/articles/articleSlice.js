@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getArticles, getArticlesBySearch } from './articlesOperations';
+import { articlesApi } from './api';
 
 const initialState = {
   items: [],
-  status: '',
   count: 0,
 };
 
 const articleSlice = createSlice({
-  name: 'article',
+  name: 'articles',
   initialState,
   reducers: {
     addItems: (state, { payload }) => {
@@ -16,44 +15,25 @@ const articleSlice = createSlice({
     },
   },
 
-  extraReducers: {
-    [getArticles.pending]: state => {
-      state.status = 'pending';
-      state.items = [];
-      state.count = 0;
-    },
-    [getArticles.fulfilled]: (state, { payload }) => {
-      state.items = payload.articles;
-      state.count = payload.count;
-      state.status = 'success';
-    },
-    [getArticles.rejected]: state => {
-      state.status = 'error';
-      state.items = [];
-      state.count = 0;
-    },
+  extraReducers: builder => {
+    builder.addMatcher(
+      articlesApi.endpoints.getArticles.matchFulfilled,
+      (state, { payload }) => {
+        state.items = payload;
+      }
+    );
 
-    //getArticlesBySearch
-    [getArticlesBySearch.pending]: state => {
-      state.status = 'pending';
-      state.items = [];
-      state.count = 0;
-    },
-    [getArticlesBySearch.fulfilled]: (state, { payload }) => {
-      state.items = payload.articles;
-      state.count = payload.count;
-      state.status = 'success';
-    },
-    [getArticlesBySearch.rejected]: state => {
-      state.status = 'error';
-      state.items = [];
-      state.count = 0;
-    },
+    builder.addMatcher(
+      articlesApi.endpoints.getCount.matchFulfilled,
+      (state, { payload }) => {
+        state.count = payload;
+      }
+    );
   },
 });
 
-export const selectorArticle = state => state.article;
+// Actions
+export const { addItems } = articleSlice.actions;
 
-export const { addItem } = articleSlice.actions;
-
-export default articleSlice.reducer;
+// Reducer
+export const articlesReducer = articleSlice.reducer;

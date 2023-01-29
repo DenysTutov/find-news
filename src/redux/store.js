@@ -1,11 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import articleSlice from './slices/articles/articleSlice';
+import { articlesApi } from './slices/articles/api';
+import { articlesReducer } from './slices/articles/articleSlice';
 import searchSlice from './slices/filterSlice';
 
 export const store = configureStore({
   reducer: {
-    article: articleSlice,
     search: searchSlice,
+    articles: articlesReducer,
+    [articlesApi.reducerPath]: articlesApi.reducer,
   },
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware(),
+    articlesApi.middleware,
+  ],
 });

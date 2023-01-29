@@ -8,12 +8,19 @@ import { VscClose } from 'react-icons/vsc';
 
 import { setSearchValue } from '../redux/slices/filterSlice';
 import { theme } from '../theme/myTheme';
+import { useGetCountQuery } from '../redux/slices/articles/api';
 
 export const Search = () => {
   const dispatch = useDispatch();
-  const count = useSelector(state => state.article.count);
+
   const [searchLocal, setSearchLocal] = useState('');
   const [hover, setHover] = useState(false);
+
+  const searchValue = useSelector(state => state.search.searchValue);
+
+  const { data: count } = useGetCountQuery(
+    searchValue ? `?title_contains=${searchValue}` : ''
+  );
 
   const handleMouseEnter = () => {
     setHover(true);

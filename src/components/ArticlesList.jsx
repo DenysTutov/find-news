@@ -1,23 +1,45 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { ArticleItem } from '../components/ArticleItem';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import { useGetArticlesQuery } from '../redux/slices/articles/api';
+import { useSelector } from 'react-redux';
 
 export const ArticlesList = () => {
-  const articles = useSelector(state => state.article.items);
+  const searchValue = useSelector(state => state.search.searchValue);
+
+  const { data: articles, isLoading } = useGetArticlesQuery(
+    searchValue ? `&title_contains=${searchValue}` : ''
+  );
 
   return (
-    <Grid
-      container
-      rowSpacing={{ md: '45px' }}
-      columnSpacing={{ md: '45px' }}
-      columns={{ md: 12 }}
-    >
-      {articles.map(article => (
-        <Grid item md={4} key={article.id}>
-          <ArticleItem article={article} />
+    <>
+      {isLoading ? (
+        <Typography
+          component="div"
+          sx={{
+            fontSize: '24px',
+            fontWeight: '400',
+            mb: '20px',
+            textAlign: 'center',
+            margin: '20px auto',
+          }}
+        >
+          Loading...
+        </Typography>
+      ) : (
+        <Grid
+          container
+          rowSpacing={{ md: '45px' }}
+          columnSpacing={{ md: '45px' }}
+          columns={{ md: 12 }}
+        >
+          {articles?.map(article => (
+            <Grid item md={4} key={article.id}>
+              <ArticleItem article={article} />
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
+      )}
+    </>
   );
 };
