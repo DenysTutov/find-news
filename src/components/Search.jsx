@@ -12,11 +12,10 @@ import { useGetCountQuery } from '../redux/slices/articles/api';
 
 export const Search = () => {
   const dispatch = useDispatch();
+  const searchValue = useSelector(state => state.search.searchValue);
 
   const [searchLocal, setSearchLocal] = useState('');
   const [hover, setHover] = useState(false);
-
-  const searchValue = useSelector(state => state.search.searchValue);
 
   const { data: count } = useGetCountQuery(
     searchValue ? `?title_contains=${searchValue}` : ''

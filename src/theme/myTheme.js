@@ -15,6 +15,7 @@ export const theme = createTheme({
       main: '#363636',
       border: '#eaeaea',
       secondary: '#989898',
+      bgColor: '#ffffff',
     },
   },
 });

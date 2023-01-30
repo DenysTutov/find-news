@@ -30,11 +30,11 @@ export const ArticlesList = () => {
         <Grid
           container
           rowSpacing={{ md: '45px' }}
-          columnSpacing={{ md: '45px' }}
-          columns={{ md: 12 }}
+          columnSpacing={{ sm: '45px', md: '45px' }}
+          columns={{ xs: 4, sm: 4, md: 8, lg: 12 }}
         >
           {articles?.map(article => (
-            <Grid item md={4} key={article.id}>
+            <Grid item xs={4} sm={4} md={4} lg={4} key={article.id}>
               <ArticleItem article={article} />
             </Grid>
           ))}
